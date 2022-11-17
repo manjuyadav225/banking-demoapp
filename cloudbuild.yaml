@@ -1,0 +1,21 @@
+timeout: 1200s
+substitutions:
+  _REGION: us-central1-a
+  _CLUSTER:  cymbal-bank-prod
+steps:
+  - name: gcr.io/cloud-builders/kubectl
+    id: Configure kubectl
+    args:
+      - cluster-info
+    env:
+      - CLOUDSDK_COMPUTE_REGION=$_REGION
+      - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - KUBECONFIG=/workspace/.kube/config
+      
+  - name: gcr.io/cloud-builders/kubectl
+    id: deploy bank-of-anthos
+    args: ['apply', '-f', './kubernetes-manifests', '--validate=false']
+    env:
+      - CLOUDSDK_COMPUTE_REGION=$_REGION
+      - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - KUBECONFIG=/workspace/.kube/config
