@@ -1,6 +1,6 @@
 timeout: 1200s
 substitutions:
-  _REGION: us-central1-a
+  _REGION: us-central1
   _CLUSTER:  yougo-cluster-gke
 steps:
   - name: gcr.io/cloud-builders/kubectl
