@@ -1,7 +1,7 @@
 timeout: 1200s
 substitutions:
   _REGION: us-central1
-  _CLUSTER:  yougo-cluster-gke
+  _CLUSTER:  manju-cluster-gke
 steps:
   - name: gcr.io/cloud-builders/kubectl
     id: Configure kubectl
