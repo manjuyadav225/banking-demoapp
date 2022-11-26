@@ -1,7 +1,9 @@
 timeout: 1200s
 substitutions:
   _REGION: us-central1
-  _CLUSTER:  manju-cluster-gke
+  _CLUSTER:  manju-dev-cluster
+  _PROJECTID: manju-dev
+  
 steps:
   - name: gcr.io/cloud-builders/kubectl
     id: Configure kubectl
@@ -10,6 +12,7 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
       
   - name: gcr.io/cloud-builders/kubectl
@@ -18,6 +21,7 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
       
   - name: gcr.io/cloud-builders/kubectl
@@ -26,4 +30,5 @@ steps:
     env:
       - CLOUDSDK_COMPUTE_REGION=$_REGION
       - CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER
+      - PROJECT_ID=$_PROJECTID
       - KUBECONFIG=/workspace/.kube/config
